@@ -53,6 +53,19 @@ class Article:
     all = [] # class-leve list to hold all articles
 
     def __init__(self, author, magazine, title):
+        from lib.classes.author import Author
+        from lib.classes.magazine import Magazine
+
+        if not isinstance(author, Author):
+            raise TypeError("author must be an author instance")
+        
+        if not isinstance(magazine, Magazine):
+            raise TypeError("magazine must be a Magazine instance")
+        if not isinstance(title, str) or not (5 <= len(title) <=50):
+            raise ValueError("title must be a string between 5 and 50 characters")
+
+
+
         self.author = author
         self.magazine = magazine
         self.title = title

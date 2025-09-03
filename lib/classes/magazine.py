@@ -53,23 +53,17 @@ class Magazine:
     
     @classmethod
     def top_publisher(cls):
-        """Return the magazine with the most articles. Return None if no articles exist"""
-        if not hasattr(cls, "all") or not cls.all:
-            return None
-        
-        from lib.classes.article import Article
+        from lib.classes.article import Article  # local import to avoid circular import
 
         if not Article.all:
             return None
-        
-        #count articles per magazine
-        magazine_counts = {}
+
+        counts = {}
         for article in Article.all:
-            magazine = article.magazine
-            magazine_counts[magazine] = magazine_counts.get(magazine, 0) + 1
-        
-        if not magazine_counts:
+            mag = article.magazine
+            counts[mag] = counts.get(mag, 0) + 1
+
+        if not counts:
             return None
-        
-        return max(magazine_counts, key=magazine_counts.get)
-    
+
+        return max(counts, key=counts.get, default=None)
