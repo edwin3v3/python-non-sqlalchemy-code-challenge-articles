@@ -1,8 +1,37 @@
 class Article:
     def __init__(self, author, magazine, title):
-        self.author = author
-        self.magazine = magazine
-        self.title = title
+     
+        from lib.classes.many_to_many import Author, Magazine  
+        if not isinstance(author, Author):
+            raise TypeError("author must be an Author instance")
+        if not isinstance(magazine, Magazine):
+            raise TypeError("magazine must be a Magazine instance")
+
+        # validate title
+        if not isinstance(title, str):
+            raise TypeError("title must be a string")
+        if len(title) < 5 or len(title) > 50:
+            raise ValueError("title must be between 5 and 50 characters")
+
+        # store values
+        self._author = author
+        self._magazine = magazine
+        self._title = title   
+
+    # --- title property (read-only) ---
+    @property
+    def title(self):
+        return self._title
+
+    # --- author property (read-only for now) ---
+    @property
+    def author(self):
+        return self._author
+
+    # --- magazine property (read-only for now) ---
+    @property
+    def magazine(self):
+        return self._magazine
         
 class Author:
     def __init__(self, name):
