@@ -50,3 +50,25 @@ class Magazine:
         # filter authors with more than 2 publications
         result = [author for author, count in authors.items() if count > 2]
         return result if result else None
+    
+    def top_publisher(cls):
+        """Retrun the magazine with the most articles. Return None if no articles exist"""
+        if not hasattr(cls, "all") or not cls.all:
+            return None
+        
+        from lib.classes.article import Article
+
+        if not Article.all:
+            return None
+        
+        #count articles per magazine
+        magazine_counts = {}
+        for article in Article.all:
+            magazine = article.magazine
+            magazine_counts[magazine] = magazine_counts.get(magazine, 0) + 1
+        
+        if not magazine_counts:
+            return None
+        
+        return max(magazine_counts, key=magazine_counts.get)
+    
