@@ -37,7 +37,16 @@ class Magazine:
         return list({article.author for article in self.articles()})
 
     def article_titles(self):
-        pass
+        """Return a list of all article titles for this magazine"""
+        titles = [article.title for article in self.articles()]
+        return titles if titles else None
 
     def contributing_authors(self):
-        pass
+        """Return authors with more than 2 articles in this magazine"""
+        authors = {}
+        for article in self.articles():
+            authors[article.author] = authors.get(article.author, 0) + 1
+
+        # filter authors with more than 2 publications
+        result = [author for author, count in authors.items() if count > 2]
+        return result if result else None
