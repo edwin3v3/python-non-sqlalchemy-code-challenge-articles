@@ -1,9 +1,9 @@
 from lib.classes.many_to_many import Author, Magazine, Article
 
-1 = Author("Blake")
+# a1 = Author("Blake")
 
 # a.name = "kinuya"
-print(a1.name)
+
 
 m1 = Magazine("aaa", "News")
 
@@ -31,3 +31,6 @@ art3 = Article(a2, m1, "Tech and Society")
 print([a.title for a in a1.articles()])
 
 print([m.name for m in a1.magazines()])
+
+print([c.name for c in m1.contributors()])
+
