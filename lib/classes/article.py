@@ -1,6 +1,3 @@
-from lib.classes.author import Author
-from lib.classes.magazine import Magazine
-
 # class Article:
 #     all = []  # keep track of all Article instances
 

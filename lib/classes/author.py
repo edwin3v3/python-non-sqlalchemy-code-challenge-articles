@@ -1,3 +1,6 @@
+from .article import Article
+from .magazine import Magazine
+
 class Author:
     def __init__(self, name):
         self.name = name
@@ -30,8 +33,22 @@ class Author:
     def magazines(self):
         return list({article.magazine for article in self.articles()})
 
+   # --- New methods ---
     def add_article(self, magazine, title):
-        pass
+        """
+        Creates and returns a new Article instance
+        with this author, the given magazine, and title.
+        """
+        if not isinstance(magazine, Magazine):
+            raise TypeError("magazine must be a Magazine instance")
+        return Article(self, magazine, title)
 
     def topic_areas(self):
-        pass
+        """
+        Returns a unique list of categories of magazines
+        this author has contributed to.
+        Returns None if no articles exist.
+        """
+        if not self.articles():
+            return None
+        return list({magazine.category for magazine in self.magazines()})
