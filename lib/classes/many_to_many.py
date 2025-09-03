@@ -12,27 +12,7 @@ class Magazine:
         self._category = category
         Magazine.all.append(self) 
 
-    @property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        if not isinstance(value, str):
-            raise TypeError("Name must be String")
-        self._name = value
-
-    @property
-    def category(self):
-        return self._category
-
-    @category.setter
-    def category(self, value):
-        if not isinstance(value, str):
-            raise TypeError("Category must be a string")
-        if len(value) == 0:
-            raise ValueError("Category must be at least 1 character long")
-        self._category = value
+    
 
     # ----------------------
     # ADD THIS METHOD
