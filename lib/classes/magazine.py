@@ -53,7 +53,7 @@ class Magazine:
     
     @classmethod
     def top_publisher(cls):
-        """Retrun the magazine with the most articles. Return None if no articles exist"""
+        """Return the magazine with the most articles. Return None if no articles exist"""
         if not hasattr(cls, "all") or not cls.all:
             return None
         
