@@ -1,4 +1,5 @@
 import pytest
+from lib.classes.magazine import Magazine
 
 from classes.many_to_many import Article
 from classes.many_to_many import Magazine
@@ -32,8 +33,8 @@ class TestMagazine:
         assert magazine_2.name == "AD"
 
         # uncomment the next two lines if using Exceptions
-        # with pytest.raises(Exception):
-        #     Magazine(2, "Numbers")
+        with pytest.raises(Exception):
+            Magazine(2, "Numbers")
 
     def test_name_len(self):
         """magazine name is between 2 and 16 characters, inclusive"""
