@@ -1,8 +1,11 @@
 class Article:
+    all = [] # class-leve list to hold all articles
+
     def __init__(self, author, magazine, title):
         self.author = author
         self.magazine = magazine
         self.title = title
+        Article.all.append(self)
 
     # --- author property ---
     @property
@@ -68,10 +71,12 @@ class Author:
 
 
     def articles(self):
-        pass
+        from lib.classes.many_to_many import Article
+        # find alll article objects that belong to this author
+        return [article for article in Article.all if article.author == self]
 
     def magazines(self):
-        pass
+        return list({article.magazine for article in self.articles})
 
     def add_article(self, magazine, title):
         pass
