@@ -51,6 +51,7 @@ class Magazine:
         result = [author for author, count in authors.items() if count > 2]
         return result if result else None
     
+    @classmethod
     def top_publisher(cls):
         """Retrun the magazine with the most articles. Return None if no articles exist"""
         if not hasattr(cls, "all") or not cls.all:
